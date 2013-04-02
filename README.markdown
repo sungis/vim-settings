@@ -41,14 +41,14 @@ Usage: In a command prompt, run:
 
 To use NERDTree
 ---------------
-Press C-t
+    Press <C-t>
 
 To use snipmate
 ---------------
-tab after typing the snippet
+    <tab> after typing the snippet
 
 To use supertab
 ---------------
-shift-tab to auto complete
+    shift-<tab> to auto complete
 
 Have fun!
