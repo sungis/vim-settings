@@ -12,3 +12,8 @@ set sw=2
 set sts=2
 set ts=8
 set hls
+
+
+"pydiction 1.2 python auto complete
+let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
+let g:pydiction_menu_height = 20 

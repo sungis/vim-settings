@@ -14,7 +14,7 @@ Finished :D
 
 To use NERDTree
 ---------------
-Press F2
+Press <C-t>
 
 To use snipmate
 ---------------
