@@ -20,3 +20,5 @@ colorscheme solarized
 "pydiction 1.2 python auto complete
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
 let g:pydiction_menu_height = 20 
+
+let g:snips_trigger_key='<F2>'
