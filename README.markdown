@@ -84,5 +84,8 @@ To use shell
     :r !{program}           执行 {program} 并读取其输出
     :w !{program}           执行 {program} 传送文本至其输入
     :[range]!{program}      经由 {program} 过滤文本
+    % 代表当前文件名
+    例子
+    :!python %
 
 Have fun!
