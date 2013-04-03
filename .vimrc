@@ -13,6 +13,9 @@ set sts=2
 set ts=8
 set hls
 
+syntax enable
+set background=dark
+colorscheme solarized
 
 "pydiction 1.2 python auto complete
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
