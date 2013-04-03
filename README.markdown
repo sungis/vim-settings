@@ -45,10 +45,35 @@ To use NERDTree
 
 To use snipmate
 ---------------
-    <tab> after typing the snippet
+    <F2> after typing the snippet
 
 To use supertab
 ---------------
     shift-<tab> to auto complete
+
+To use Grep
+---------------
+    :Grep按照指定的规则在指定的文件中查找
+    :Rgrep同上, 但是是递归的grep
+    :GrepBuffer在所有打开的缓冲区中查找
+    :Bgrep同上
+    :GrepArgs在vim的argument filenames (:args)中查找
+    :Fgrep运行fgrep
+    :Rfgrep运行递归的fgrep
+    :Egrep运行egrep
+    :Regrep运行递归的egrep
+    :Agrep运行agrep
+    :Ragrep运行递归的agrep
+
+    nnoremap <silent> <F3> :Grep<CR>
+
+    将光标移到"FEAT_QUICKFIX"上, 然后按下F3键
+    在最下面的命令行会显示:
+    Search for pattern: FEAT_QUICKFIX 此时你还可以编辑该行, grep支持正则表达式, 你想全词匹配的话可以改成:
+    Search for pattern: /<FEAT_QUICKFIX/> 然后按下回车:
+    在最下面的命令行会显示:
+    Search in files: * 是问你搜索范围, 默认是该目录下的所有文件, 此时你还可以编辑该行, 比如你只想搜索源码文件:
+    Search in files: *.c *.h 然后在按下回车, 会在弹出的QuickFix窗口中列出所有符合条件的搜索结果, 你可以在其中查找你想要的结果
+
 
 Have fun!
