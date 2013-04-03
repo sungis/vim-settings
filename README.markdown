@@ -75,5 +75,14 @@ To use Grep
     Search in files: * 是问你搜索范围, 默认是该目录下的所有文件, 此时你还可以编辑该行, 比如你只想搜索源码文件:
     Search in files: *.c *.h 然后在按下回车, 会在弹出的QuickFix窗口中列出所有符合条件的搜索结果, 你可以在其中查找你想要的结果
 
+To use shell
+----------------
+    从 Vim 内部执行单个 shell 命令，用 ":!{command}"。
+    Vim 将执行该程序。当它结束时，你会得到提示，让你击打 <Enter>。这提示允许你 在回去编辑你的文本之前看一看该命令的输出。
+    字符 "!" 也用在其它有个程序被调用运行的场合。让我们看一看共有哪些:
+    :!{program}             执行 {program}
+    :r !{program}           执行 {program} 并读取其输出
+    :w !{program}           执行 {program} 传送文本至其输入
+    :[range]!{program}      经由 {program} 过滤文本
 
 Have fun!
