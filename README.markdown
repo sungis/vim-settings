@@ -22,10 +22,10 @@ Finished :D
 Pyclewn
 =====
     :help Pyclewn
-    :Pyclewn pdb [script.py]
-    :Cmapkeys
+    :Pyclewn pdb [script.py] ==><F5>
+    :Cmapkeys                ==><F6>
     :map <C-P> :exe "Cp " . expand("<cword>") <CR>
-    :<C-p>
+    :<C-p>                   ==><F7>
 
 The error is
 (Pdb) p
