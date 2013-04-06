@@ -66,3 +66,4 @@ let g:miniBufExplModSelTarget = 1
 nnoremap <silent> <F7> :exe "Cp " . expand("<cword>")<CR>
 nnoremap <silent> <F5> :Pyclewn pdb % <CR>
 nnoremap <silent> <F6> :Cmapkeys <CR>
+nnoremap <silent> <F12> :ConqueTerm bash <CR>
