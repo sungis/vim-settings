@@ -39,6 +39,16 @@ position, and not on the mouse position) by mapping C-P this way:
 
     :map <C-P> :exe "Cp " . expand("<cword>") <CR>
 
+conque
+=====
+Usage
+Type :ConqueTerm <command> to run your command in vim, for example:
+
+    :ConqueTerm bash
+    :ConqueTermSplit mysql -h localhost -u joe -p sock_collection
+    :ConqueTermTab Powershell.exe
+    :ConqueTermVSplit C:\Python27\python.exe
+
 
 To use Pydiction Usage
 =====
