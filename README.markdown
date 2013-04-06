@@ -8,13 +8,39 @@ To install
 cd ~
 git clone https://github.com/sungis/vim-settings.git .vim
 ln -s .vim/.vimrc
-```
+
+Install
+=====
+sudo apt-get install ctags
+
+
+cd ~/.vim/install/pyclewn-1.10.py2
+sudo python setup.py install
 
 Finished :D
 
-To use Pydiction 
+Pyclewn
+=====
+    :help Pyclewn
+    :Pyclewn pdb [script.py]
+    :Cmapkeys
+    :map <C-P> :exe "Cp " . expand("<cword>") <CR>
+    :<C-p>
 
-Usage
+The error is
+(Pdb) p
+*** SyntaxError: unexpected EOF while parsing
+
+The C-P mapping uses the Vim balloon evaluation feature and this
+feature does not seem to work in console mode.
+
+You can get the same result (except it is based on the cursor
+position, and not on the mouse position) by mapping C-P this way:
+
+    :map <C-P> :exe "Cp " . expand("<cword>") <CR>
+
+
+To use Pydiction Usage
 =====
 Type part of a Python keyword, module name, attribute or method in "insert mode" in Vim, then hit the TAB key and it will auto-complete.
 
