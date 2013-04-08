@@ -12,7 +12,7 @@ ln -s .vim/.vimrc
 Install
 =====
 sudo apt-get install ctags
-
+apt-get install python-dev
 sudo apt-get install -y vim-* 
 
 cd ~/.vim/install/pyclewn-1.10.py2
