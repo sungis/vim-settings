@@ -13,7 +13,7 @@ Install
 =====
 sudo apt-get install ctags
 
-**sudo apt-get install -y vim-* 
+sudo apt-get install -y vim-* 
 
 cd ~/.vim/install/pyclewn-1.10.py2
 sudo python setup.py install
