@@ -32,7 +32,7 @@ language messages zh_CN.utf-8
 
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme koehler
 
 "pydiction 1.2 python auto complete
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
