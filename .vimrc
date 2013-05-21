@@ -8,9 +8,9 @@ set nu
 set showmatch
 set ai
 set et
-set sw=2
-set sts=2
-set ts=8
+set sw=4
+set sts=4
+set ts=4
 set hls
 "乱码问题大解决
 set encoding=utf-8
@@ -26,6 +26,10 @@ source $VIMRUNTIME/menu.vim
 "解决consle输出乱码
 language messages zh_CN.utf-8
 
+"设置一行的最大长度
+set textwidth=80
+"把80个字符后的字都高这显示出来
+:match DiffAdd '\%>80v.*'
 
 
 "set mouse=a
@@ -33,6 +37,7 @@ language messages zh_CN.utf-8
 syntax enable
 set background=dark
 colorscheme koehler
+"colorscheme freya
 
 "pydiction 1.2 python auto complete
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'

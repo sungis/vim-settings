@@ -238,4 +238,18 @@ PS：.代表一个任意字符 *代表一个或多个字符的重复
            7、恢复vim状态 :source name.vim
            8、启动vim时恢复状态 vim -S name.vim
 
+vim 从 vim7 开始加入了多标签切换的功能， 相当于多窗口.
+之前的版本虽然也有多文件编辑功能， 但是总之不如这个方便啦。
+用法
+:tabnew [++opt选项] ［＋cmd］ 文件            建立对指定文件新的tab
+:tabc       关闭当前的tab
+:tabo       关闭所有其他的tab
+:tabs       查看所有打开的tab
+:tabp      前一个
+:tabn      后一个
+标准模式下：
+gt , gT 可以直接在tab之间切换。
+
+还有很多他命令， 看官大人自己， :help table 吧。
+
 Have fun!
