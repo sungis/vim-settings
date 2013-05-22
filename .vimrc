@@ -32,6 +32,8 @@ set textwidth=80
 
 "set mouse=a
 
+
+
 syntax enable
 set background=dark
 colorscheme koehler
