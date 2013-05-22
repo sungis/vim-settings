@@ -14,11 +14,22 @@ Install
 sudo apt-get install ctags
 apt-get install python-dev
 sudo apt-get install -y vim-* 
+sudo pip install pep8
 
 cd ~/.vim/install/pyclewn-1.10.py2
 sudo python setup.py install
 
 Finished :D
+
+PEP8
+=====
+1.sudo pip install pep8
+2.到http://www.vim.org/scripts/script.php?script_id=2914下载最新版本的插件，
+    放到~/.vim/ftplugin/python/目录下
+3. 打开vim,输入:filetype，看看plugin是否ON。如果不是，
+    编辑~/.vimrc，加入filetype plugin on这行
+4. 用vim打开一个.py文件，按F5看看是否有Quickfix
+   List出现，或者左下角是否有提示”PEP8 correct”，有两者其一说明安装成功。
 
 Pyclewn
 =====
