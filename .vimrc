@@ -29,9 +29,12 @@ language messages zh_CN.utf-8
 
 "设置一行的最大长度
 set textwidth=80
-
+" 历史记录数
+set history=1000
 "set mouse=a
 
+"状态行显示的内容
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   
 
 
 syntax enable
@@ -91,3 +94,16 @@ nnoremap <silent> <F12> :ConqueTerm bash <CR>
 "把80个字符后的字都高这显示出来
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
+
+map <C-l> :tabn<cr>             "下一个tab
+map <C-h> :tabp<cr>             "上一个tab
+map <C-n> :tabnew<cr>           "新tab
+map <C-k> :bn<cr>               "下一个文件
+map <C-j> :bp<cr>               "上一个文件
+
+"自动增加头部注释
+let g:vimrc_author='Sungis' 
+let g:vimrc_email='mr.sungis@gmail.com' 
+let g:vimrc_homepage='http://sungis.github.com'
+
+nmap <F4> :AuthorInfoDetect<cr>
