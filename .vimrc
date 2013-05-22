@@ -30,8 +30,6 @@ language messages zh_CN.utf-8
 "设置一行的最大长度
 set textwidth=80
 
-
-
 "set mouse=a
 
 syntax enable
