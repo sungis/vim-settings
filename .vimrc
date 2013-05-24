@@ -92,6 +92,7 @@ nnoremap <silent> <F6> :Cmapkeys <CR>
 nnoremap <silent> <F12> :ConqueTerm bash <CR>
 
 "把80个字符后的字都高这显示出来
+"set cc=80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 match OverLength /\%81v.\+/
 
