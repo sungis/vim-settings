@@ -19,29 +19,6 @@ sudo python setup.py install
 
 Finished :D
 
-ConqueTerm
-=====
-http://www.vim.org/scripts/script.php?script_id=2771
-
-        在vim(gvim)中运行终端
-
-       下载conque_1.1.vba，用vim打开后，执行:so %，会自动执行安装.
-
-    五.使用方法
-
-        一共四个命令：
-
-        ConqueTerm        : 在当前的窗口打开
-
-        ConqueTermSplit    :横向分割一个窗口之后打开
-
-        ConqueTermVSplit :竖向分割一个窗口之后打开
-
-        ConqueTermTab    :先建一个tab页之后打开
-
-        在想要退出某个窗口操作时，按一下ESC，之后就会回到vim操作中。
-
-        另外，在bash中，按下i，会自动到达终端最后的光标处，的确很贴心的设计。
 
 Pyclewn
 =====
@@ -73,6 +50,31 @@ Type :ConqueTerm <command> to run your command in vim, for example:
     :ConqueTermTab Powershell.exe
     :ConqueTermVSplit C:\Python27\python.exe
 
+ConqueTerm
+=====
+http://www.vim.org/scripts/script.php?script_id=2771
+
+        在vim(gvim)中运行终端
+
+       下载conque_1.1.vba，用vim打开后，执行:so %，会自动执行安装.
+
+    五.使用方法
+
+        一共四个命令：
+
+        ConqueTerm        : 在当前的窗口打开
+
+        ConqueTermSplit    :横向分割一个窗口之后打开
+
+        ConqueTermVSplit :竖向分割一个窗口之后打开
+
+        ConqueTermTab    :先建一个tab页之后打开
+
+        在想要退出某个窗口操作时，按一下ESC，之后就会回到vim操作中。
+
+        另外，在bash中，按下i，会自动到达终端最后的光标处，的确很贴心的设计。
+
+        快捷键 <F12> ==> ConqueTerm bash
 
 To use Pydiction Usage
 =====
