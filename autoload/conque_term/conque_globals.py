@@ -1,8 +1,8 @@
 # FILE:     autoload/conque_term/conque_globals.py
 # AUTHOR:   Nico Raffo <nicoraffo@gmail.com>
 # WEBSITE:  http://conque.googlecode.com
-# MODIFIED: __MODIFIED__
-# VERSION:  __VERSION__, for Vim 7.0
+# MODIFIED: 2011-08-12
+# VERSION:  2.2, for Vim 7.0
 # LICENSE:
 # Conque - Vim terminal/console emulator
 # Copyright (C) 2009-__YEAR__ Nico Raffo
@@ -32,7 +32,7 @@
 import sys
 import re
 import os # DEBUG
-import logging # DEBUG
+
 import traceback # DEBUG
 
 # PYTHON VERSION
@@ -71,21 +71,21 @@ def uchr(str):
         return unichr(str)
 
 
-# Logging
 
-# enable logging # DEBUG
-CONQUE_LOG_FILENAME = None # DEBUG
-if os.path.exists('/home/nraffo/.vim/'): # DEBUG
-    CONQUE_LOG_FILENAME = '/home/nraffo/.vim/pylog.log' # DEBUG
-elif os.path.exists('C:/Documents and Settings/nraffo/vimfiles/'): # DEBUG
-    CONQUE_LOG_FILENAME = 'C:/Documents and Settings/nraffo/vimfiles/pylog.log' # DEBUG
-elif os.path.exists('/Users/nraffo/vimfiles/'): # DEBUG
-    CONQUE_LOG_FILENAME = '/Users/nraffo/vimfiles/pylog.log' # DEBUG
 
-CONQUE_LOG_LEVEL = logging.INFO #DEBUG
 
-if CONQUE_LOG_FILENAME: # DEBUG
-    logging.basicConfig(filename=CONQUE_LOG_FILENAME, level=CONQUE_LOG_LEVEL) # DEBUG
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Unix escape sequence settings

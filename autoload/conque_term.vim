@@ -1,8 +1,8 @@
 " FILE:     autoload/conque_term.vim {{{
 " AUTHOR:   Nico Raffo <nicoraffo@gmail.com>
 " WEBSITE:  http://conque.googlecode.com
-" MODIFIED: __MODIFIED__
-" VERSION:  __VERSION__, for Vim 7.0
+" MODIFIED: 2011-08-12
+" VERSION:  2.2, for Vim 7.0
 " LICENSE:
 " Conque - Vim terminal/console emulator
 " Copyright (C) 2009-__YEAR__ Nico Raffo 
@@ -628,8 +628,7 @@ function! conque_term#set_mappings(action) "{{{
         sil exe 'augroup ' . b:ConqueTerm_Var
 
         " handle unexpected closing of shell, passes HUP to parent and all child processes
-        sil exe 'autocmd ' . b:ConqueTerm_Var . ' BufDelete <buffer> call g:ConqueTerm_Terminals[' . b:ConqueTerm_Idx . '].close()'
-        sil exe 'autocmd ' . b:ConqueTerm_Var . ' BufUnload <buffer> call g:ConqueTerm_Terminals[' . b:ConqueTerm_Idx . '].close()'
+        sil exe 'autocmd ' . b:ConqueTerm_Var . ' BufUnload <buffer> ' . s:py . ' ' . b:ConqueTerm_Var . '.close()'
 
         " check for resized/scrolled buffer when entering buffer
         sil exe 'autocmd ' . b:ConqueTerm_Var . ' BufEnter <buffer> ' . s:py . ' ' . b:ConqueTerm_Var . '.update_window_size()'
@@ -1404,16 +1403,13 @@ function! s:term_obj.close() dict " {{{
     endtry
 
     " delete buffer if option is set
-    try
-        if self.is_buffer
-            call conque_term#set_mappings('stop')
-            if exists('g:ConqueTerm_CloseOnEnd') && g:ConqueTerm_CloseOnEnd
-                sil exe 'bwipeout! ' . self.buffer_name
-                stopinsert!
-            endif
+    if self.is_buffer
+        call conque_term#set_mappings('stop')
+        if exists('g:ConqueTerm_CloseOnEnd') && g:ConqueTerm_CloseOnEnd
+            sil exe 'bwipeout! ' . self.buffer_name
+            stopinsert!
         endif
-    catch
-    endtry
+    endif
 
     " mark ourselves as inactive
     let self.active = 0

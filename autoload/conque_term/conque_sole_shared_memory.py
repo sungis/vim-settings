@@ -1,8 +1,8 @@
 # FILE:     autoload/conque_term/conque_sole_shared_memory.py
 # AUTHOR:   Nico Raffo <nicoraffo@gmail.com>
 # WEBSITE:  http://conque.googlecode.com
-# MODIFIED: __MODIFIED__
-# VERSION:  __VERSION__, for Vim 7.0
+# MODIFIED: 2011-08-12
+# VERSION:  2.2, for Vim 7.0
 # LICENSE:
 # Conque - Vim terminal/console emulator
 # Copyright (C) 2009-__YEAR__ Nico Raffo

@@ -1,8 +1,8 @@
 " FILE:     plugin/conque_term.vim {{{
 " AUTHOR:   Nico Raffo <nicoraffo@gmail.com>
 " WEBSITE:  http://conque.googlecode.com
-" MODIFIED: __MODIFIED__
-" VERSION:  __VERSION__, for Vim 7.0
+" MODIFIED: 2011-08-12
+" VERSION:  2.2, for Vim 7.0
 " LICENSE:
 " Conque - Vim terminal/console emulator
 " Copyright (C) 2009-__YEAR__ Nico Raffo 
@@ -35,11 +35,8 @@ if exists('g:ConqueTerm_Loaded') || v:version < 700
 endif
 
 " **********************************************************************************************************
-" **** DEFAULT CONFIGURATION *******************************************************************************
+" **** CONFIGURATION ***************************************************************************************
 " **********************************************************************************************************
-
-" DO NOT EDIT CONFIGURATION SETTINGS IN THIS FILE!
-" Define these variables in your local .vimrc to over-ride the default values
 
 " {{{
 
@@ -188,7 +185,7 @@ endif " }}}
 
 let g:ConqueTerm_Loaded = 1
 let g:ConqueTerm_Idx = 0
-let g:ConqueTerm_Version = 230
+let g:ConqueTerm_Version = 210
 
 command! -nargs=+ -complete=shellcmd ConqueTerm call conque_term#open(<q-args>)
 command! -nargs=+ -complete=shellcmd ConqueTermSplit call conque_term#open(<q-args>, ['belowright split'])

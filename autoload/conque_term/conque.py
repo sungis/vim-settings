@@ -1,8 +1,8 @@
 # FILE:     autoload/conque_term/conque.py 
 # AUTHOR:   Nico Raffo <nicoraffo@gmail.com>
 # WEBSITE:  http://conque.googlecode.com
-# MODIFIED: __MODIFIED__
-# VERSION:  __VERSION__, for Vim 7.0
+# MODIFIED: 2011-08-12
+# VERSION:  2.2, for Vim 7.0
 # LICENSE:
 # Conque - Vim terminal/console emulator
 # Copyright (C) 2009-__YEAR__ Nico Raffo
@@ -161,6 +161,10 @@ class Conque:
         read -- Check program for new output when finished
 
         """
+        # check if window size has changed
+        if read:
+            self.update_window_size()
+
         # write and read
         self.proc.write(input)
 
@@ -188,14 +192,14 @@ class Conque:
                 val = vim.eval(expr)
                 self.write(unicode(val, CONQUE_VIM_ENCODING, 'ignore'), set_cursor, read)
             except:
-                logging.info(traceback.format_exc())
+
                 pass
         else:
             try:
                 # XXX - Depending on Vim to deal with encoding, sadly
                 self.write(vim.eval(expr), set_cursor, read)
             except:
-                logging.info(traceback.format_exc())
+
                 pass
 
 
@@ -248,7 +252,7 @@ class Conque:
             if not update_buffer:
                 return output
 
-            logging.debug(output)
+
 
             # strip null characters. I'm still not sure why they appear
             output = output.replace(chr(0), '')
@@ -256,7 +260,7 @@ class Conque:
             # split input into individual escape sequences, control codes, and text output
             chunks = CONQUE_SEQ_REGEX.split(output)
 
-            logging.debug(str(chunks))
+
 
             # if there were no escape sequences, skip processing and treat entire string as plain text
             if len(chunks) == 1:
@@ -268,60 +272,60 @@ class Conque:
                     if s == '':
                         continue
 
-                    #logging.debug(str(s) + '--------------------------------------------------------------')
-                    logging.debug('at line ' + str(self.l) + ' column ' + str(self.c))
+
+
 
                     # Check for control character match 
                     if CONQUE_SEQ_REGEX_CTL.match(s[0]):
-                        logging.debug('control match')
+
                         nr = ord(s[0])
                         if nr in CONQUE_CTL:
                             getattr(self, 'ctl_' + CONQUE_CTL[nr])()
                         else:
-                            logging.info('control not found for ' + str(s))
+
                             pass
 
                     # check for escape sequence match 
                     elif CONQUE_SEQ_REGEX_CSI.match(s):
-                        logging.debug('csi match')
+
                         if s[-1] in CONQUE_ESCAPE:
                             csi = self.parse_csi(s[2:])
-                            logging.debug(str(csi))
+
                             getattr(self, 'csi_' + CONQUE_ESCAPE[s[-1]])(csi)
                         else:
-                            logging.info('csi not found for ' + str(s))
+
                             pass
 
                     # check for title match 
                     elif CONQUE_SEQ_REGEX_TITLE.match(s):
-                        logging.debug('title match')
+
                         self.change_title(s[2], s[4:-1])
 
                     # check for hash match 
                     elif CONQUE_SEQ_REGEX_HASH.match(s):
-                        logging.debug('hash match')
+
                         if s[-1] in CONQUE_ESCAPE_HASH:
                             getattr(self, 'hash_' + CONQUE_ESCAPE_HASH[s[-1]])()
                         else:
-                            logging.info('hash not found for ' + str(s))
+
                             pass
 
                     # check for charset match 
                     elif CONQUE_SEQ_REGEX_CHAR.match(s):
-                        logging.debug('char match')
+
                         if s[-1] in CONQUE_ESCAPE_CHARSET:
                             getattr(self, 'charset_' + CONQUE_ESCAPE_CHARSET[s[-1]])()
                         else:
-                            logging.info('charset not found for ' + str(s))
+
                             pass
 
                     # check for other escape match 
                     elif CONQUE_SEQ_REGEX_ESC.match(s):
-                        logging.debug('escape match')
+
                         if s[-1] in CONQUE_ESCAPE_PLAIN:
                             getattr(self, 'esc_' + CONQUE_ESCAPE_PLAIN[s[-1]])()
                         else:
-                            logging.info('escape not found for ' + str(s))
+
                             pass
 
                     # else process plain text 
@@ -335,9 +339,13 @@ class Conque:
             # we need to set the cursor position
             self.cursor_set = False
 
+            # redraw screen for immediate feedback
+            #if not CONQUE_FAST_MODE:
+            #    vim.command('redraw')
+
         except:
-            logging.info('read error')
-            logging.info(traceback.format_exc())
+
+
             pass
 
         if return_output:
@@ -395,19 +403,13 @@ class Conque:
         if self.cursor_set:
             return
 
-        # check if window size has changed
-        if not CONQUE_FAST_MODE:
-            self.update_window_size()
-            logging.info('window size!')
-
         # otherwise set cursor position
         try:
             self.set_cursor(self.l, self.c)
         except:
-            logging.info('cursor set error')
-            logging.info(traceback.format_exc())
-            pass
 
+
+            pass
         self.cursor_set = True
 
 
@@ -428,19 +430,19 @@ class Conque:
             input = u('')
             for i in range(0, len(old_input)):
                 chrd = ord(old_input[i])
-                logging.debug('pre-translation: ' + old_input[i])
-                logging.debug('ord: ' + str(chrd))
+
+
                 try:
                     if chrd > 255:
-                        logging.info("over the line!!!11")
+
                         input = input + old_input[i]
                     else:
                         input = input + uchr(CONQUE_GRAPHICS_SET[chrd])
                 except:
-                    logging.info('failed')
+
                     pass
 
-        logging.debug('plain -- ' + str(self.color_changes))
+
 
         # get current line from Vim buffer
         current_line = self.screen[self.l]
@@ -459,7 +461,7 @@ class Conque:
                 self.c += len(input)
                 return
 
-            logging.debug('autowrap triggered')
+
             diff = self.c + len(input) - self.working_columns - 1
 
             # if autowrap is enabled
@@ -469,7 +471,7 @@ class Conque:
                 self.ctl_nl()
                 self.ctl_cr()
                 remaining = input[-1 * diff:]
-                logging.debug('remaining text: "' + remaining + '"')
+
                 self.plain_text(remaining)
             else:
                 self.screen[self.l] = current_line[:self.c - 1] + input[:-1 * diff - 1] + input[-1]
@@ -497,7 +499,7 @@ class Conque:
 
 
         """
-        logging.debug('applying colors ' + str(self.color_changes))
+
 
         # stop here if coloration is disabled
         if not self.enable_colors:
@@ -510,27 +512,27 @@ class Conque:
             buffer_line = self.get_buffer_line(self.l)
 
         # check for previous overlapping coloration
-        logging.debug('start ' + str(start) + ' end ' + str(end))
+
         to_del = []
         if buffer_line in self.color_history:
             for i in range(len(self.color_history[buffer_line])):
                 syn = self.color_history[buffer_line][i]
-                logging.debug('checking syn ' + str(syn))
+
                 if syn['start'] >= start and syn['start'] < end:
-                    logging.debug('first')
+
                     vim.command('syn clear ' + syn['name'])
                     to_del.append(i)
                     # outside
                     if syn['end'] > end:
-                        logging.debug('first.half')
+
                         self.exec_highlight(buffer_line, end, syn['end'], syn['highlight'])
                 elif syn['end'] > start and syn['end'] <= end:
-                    logging.debug('second')
+
                     vim.command('syn clear ' + syn['name'])
                     to_del.append(i)
                     # outside
                     if syn['start'] < start:
-                        logging.debug('second.half')
+
                         self.exec_highlight(buffer_line, syn['start'], start, syn['highlight'])
 
         # remove overlapped colors
@@ -569,7 +571,7 @@ class Conque:
         # link this syntax match to existing highlight group
         syntax_highlight = 'highlight link %s %s' % (syntax_name, self.highlight_groups[hgroup])
 
-        logging.debug(syntax_region)
+
 
         vim.command(syntax_region)
         vim.command(syntax_highlight)
@@ -589,7 +591,7 @@ class Conque:
         to keep the maximum number of highlight rules within a reasonable range.
 
         """
-        logging.info('pruning colors ' + str(len(self.color_history.keys())))
+
 
         buffer_line = self.get_buffer_line(self.l)
         ks = list(self.color_history.keys())
@@ -652,7 +654,7 @@ class Conque:
                 ts = i + 1
                 break
 
-        logging.debug('tabbing from ' + str(self.c) + ' to ' + str(ts))
+
 
         self.c = ts
 
@@ -692,18 +694,18 @@ class Conque:
         else:
             for val in csi['vals']:
                 if val in CONQUE_FONT:
-                    logging.debug('color ' + str(CONQUE_FONT[val]))
+
                     # ignore starting normal colors
                     if CONQUE_FONT[val]['normal'] and len(self.color_changes) == 0:
-                        logging.debug('a')
+
                         continue
                     # clear color changes
                     elif CONQUE_FONT[val]['normal']:
-                        logging.debug('b')
+
                         self.color_changes = {}
                     # save these color attributes for next plain_text() call
                     else:
-                        logging.debug('c')
+
                         for attr in CONQUE_FONT[val]['attributes'].keys():
                             if attr in self.color_changes and (attr == 'cterm' or attr == 'gui'):
                                 self.color_changes[attr] += ',' + CONQUE_FONT[val]['attributes'][attr]
@@ -713,14 +715,14 @@ class Conque:
 
     def csi_clear_line(self, csi):
         """ Process the line clear escape sequence. """
-        logging.debug(str(csi))
+
 
         # this escape defaults to 0
         if len(csi['vals']) == 0:
             csi['val'] = 0
 
-        logging.debug('clear line with ' + str(csi['val']))
-        logging.debug('original line: ' + self.screen[self.l])
+
+
 
         # 0 means cursor right
         if csi['val'] == 0:
@@ -741,8 +743,8 @@ class Conque:
                 for syn in self.color_history[buffer_line]:
                     vim.command('syn clear ' + syn['name'])
 
-        logging.debug(str(self.color_changes))
-        logging.debug('new line: ' + self.screen[self.l])
+
+
 
 
     def csi_cursor_right(self, csi):
@@ -751,8 +753,8 @@ class Conque:
         if csi['val'] == 0:
             csi['val'] = 1
 
-        logging.debug('working columns is ' + str(self.working_columns))
-        logging.debug('new col is ' + str(self.c + csi['val']))
+
+
 
         if self.wrap_cursor and self.c + csi['val'] > self.working_columns:
             self.l += int(math.floor((self.c + csi['val']) / self.working_columns))
@@ -887,7 +889,7 @@ class Conque:
         if len(csi['vals']) == 0:
             csi['val'] = 0
 
-        logging.debug('clearing tab with ' + str(csi['val']))
+
 
         if csi['val'] == 0:
             self.tabstops[self.c - 1] = False
@@ -949,7 +951,7 @@ class Conque:
 
 
     def esc_set_tab(self):
-        logging.debug('set tab at ' + str(self.c))
+
         if self.c <= len(self.tabstops):
             self.tabstops[self.c - 1] = True
 
@@ -1005,10 +1007,10 @@ class Conque:
 
     def change_title(self, key, val):
         """ Change the Vim window title. """
-        logging.debug(key)
-        logging.debug(val)
+
+
         if key == '0' or key == '2':
-            logging.debug('setting title to ' + re.escape(val))
+
             vim.command('setlocal statusline=' + re.escape(val))
             try:
                 vim.command('set titlestring=' + re.escape(val))
@@ -1039,7 +1041,7 @@ class Conque:
             # reset tabstops
             self.init_tabstops()
 
-            logging.debug('signal window resize here ---')
+
 
             # signal process that screen size has changed
             self.proc.window_resize(self.lines, self.columns)
@@ -1100,9 +1102,9 @@ class Conque:
         if full != '':
             vals = full.split(';')
             for val in vals:
-                logging.debug(val)
+
                 val = re.sub("\D", "", val)
-                logging.debug(val)
+
                 if val != '':
                     attr['vals'].append(int(val))
 
