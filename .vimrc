@@ -91,8 +91,6 @@ nnoremap <silent> <F8> :Pyclewn pdb % <CR>
 nnoremap <silent> <F6> :Cmapkeys <CR>
 nnoremap <silent> <F12> :ConqueTerm bash <CR>
 
-<<<<<<< HEAD
-=======
 "把80个字符后的字都高这显示出来
 "set cc=80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
@@ -110,4 +108,3 @@ let g:vimrc_email='mr.sungis@gmail.com'
 let g:vimrc_homepage='http://sungis.github.com'
 
 nmap <F4> :AuthorInfoDetect<cr>
->>>>>>> 5de43397f88376d992c7ba2508da1fc777f41708
