@@ -8,16 +8,39 @@ set nu
 set showmatch
 set ai
 set et
-set sw=2
-set sts=2
-set ts=8
+set sw=4
+set sts=4
+set ts=4
 set hls
+set expandtab
+"乱码问题大解决
+set encoding=utf-8
+set fileencodings=utf-8,chinese,latin-1
+if has("win32")
+  set fileencoding=chinese
+else
+  set fileencoding=utf-8
+endif
+"解决菜单乱码
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+"解决consle输出乱码
+language messages zh_CN.utf-8
 
+"设置一行的最大长度
+set textwidth=80
+" 历史记录数
+set history=1000
 "set mouse=a
+
+"状态行显示的内容
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   
+
 
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme koehler
+"colorscheme freya
 
 "pydiction 1.2 python auto complete
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
@@ -64,7 +87,27 @@ let g:miniBufExplModSelTarget = 1
 ":map <C-P> :exe "Cp " . expand("<cword>") <CR>
 
 nnoremap <silent> <F7> :exe "Cp " . expand("<cword>")<CR>
-nnoremap <silent> <F5> :Pyclewn pdb % <CR>
+nnoremap <silent> <F8> :Pyclewn pdb % <CR>
 nnoremap <silent> <F6> :Cmapkeys <CR>
 nnoremap <silent> <F12> :ConqueTerm bash <CR>
 
+<<<<<<< HEAD
+=======
+"把80个字符后的字都高这显示出来
+"set cc=80
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+match OverLength /\%81v.\+/
+
+map <C-l> :tabn<cr>             "下一个tab
+map <C-h> :tabp<cr>             "上一个tab
+map <C-n> :tabnew<cr>           "新tab
+map <C-k> :bn<cr>               "下一个文件
+map <C-j> :bp<cr>               "上一个文件
+
+"自动增加头部注释
+let g:vimrc_author='Sungis' 
+let g:vimrc_email='mr.sungis@gmail.com' 
+let g:vimrc_homepage='http://sungis.github.com'
+
+nmap <F4> :AuthorInfoDetect<cr>
+>>>>>>> 5de43397f88376d992c7ba2508da1fc777f41708
