@@ -28,7 +28,7 @@ source $VIMRUNTIME/menu.vim
 language messages zh_CN.utf-8
 
 "设置一行的最大长度
-set textwidth=80
+"set textwidth=80
 " 历史记录数
 set history=1000
 "set mouse=a
@@ -92,9 +92,9 @@ nnoremap <silent> <F6> :Cmapkeys <CR>
 nnoremap <silent> <F12> :ConqueTerm bash <CR>
 
 "把80个字符后的字都高这显示出来
-"set cc=80
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
-match OverLength /\%81v.\+/
+set cc=80
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+"match OverLength /\%81v.\+/
 
 map <C-l> :tabn<cr>             "下一个tab
 map <C-h> :tabp<cr>             "上一个tab
