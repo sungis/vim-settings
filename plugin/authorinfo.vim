@@ -68,6 +68,10 @@ function s:BeforeTitle()
     let arrData = [['python',"'''"]]
     for [t,v] in arrData
         if g:CheckFileType(t)
+            call setline('.','#!/usr/bin/env python')
+            normal o
+            call setline('.','# -*- coding: utf-8 -*-')
+            normal o
             call setline('.',v)
             normal o
             break
