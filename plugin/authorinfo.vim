@@ -179,3 +179,4 @@ function s:TitleDet()
     call s:AddTitle()
 endfunction
 command! -nargs=0 AuthorInfoDetect :call s:TitleDet()
+autocmd BufNewFile *.py exec ":call s:TitleDet()"
