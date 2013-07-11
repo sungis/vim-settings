@@ -111,11 +111,12 @@ nmap <F2> :TlistToggle<CR>
 nnoremap <silent> <F3> :Grep<CR>
 "添加文档头信息
 nmap <F4> :AuthorInfoDetect<cr>
+"<F5> pep8格式检测
 "启动pdb调试
-nnoremap <silent> <F5> :Pyclewn pdb % <CR>
+nnoremap <silent> <F6> :Pyclewn pdb % <CR>
 "打印pdb快捷键列表
-nnoremap <silent> <F6> :Cmapkeys <CR>
+nnoremap <silent> <F7> :Cmapkeys <CR>
 "查看光标所在位置 变量名 对应的值
-nnoremap <silent> <F7> :exe "Cp " . expand("<cword>")<CR>
+nnoremap <silent> <F8> :exe "Cp " . expand("<cword>")<CR>
 "在vim里开启bash
 nnoremap <silent> <F12> :ConqueTerm bash <CR>

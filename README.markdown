@@ -21,8 +21,6 @@ sudo python setup.py install
 
 Finished :D
 
-<<<<<<< HEAD
-=======
 PEP8
 =====
 1.sudo pip install pep8
@@ -32,7 +30,6 @@ PEP8
     编辑~/.vimrc，加入filetype plugin on这行
 4. 用vim打开一个.py文件，按F5看看是否有Quickfix
    List出现，或者左下角是否有提示”PEP8 correct”，有两者其一说明安装成功。
->>>>>>> 5de43397f88376d992c7ba2508da1fc777f41708
 
 Pyclewn
 =====
