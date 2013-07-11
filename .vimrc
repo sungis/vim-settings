@@ -1,7 +1,6 @@
 filetype off
 call pathogen#runtime_append_all_bundles() 
 au BufNewFile,BufRead *.less set filetype=less
-map <C-t> :NERDTreeToggle<CR>
 syntax on
 filetype plugin indent on
 set nu
@@ -35,7 +34,7 @@ set history=1000
 
 "状态行显示的内容
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   
-
+set laststatus=2
 
 syntax enable
 set background=dark
@@ -46,9 +45,6 @@ colorscheme koehler
 let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
 let g:pydiction_menu_height = 20 
 
-let g:snips_trigger_key='<F2>'
-
-nnoremap <silent> <F3> :Grep<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定  
@@ -86,15 +82,16 @@ let g:miniBufExplModSelTarget = 1
 
 ":map <C-P> :exe "Cp " . expand("<cword>") <CR>
 
-nnoremap <silent> <F7> :exe "Cp " . expand("<cword>")<CR>
-nnoremap <silent> <F8> :Pyclewn pdb % <CR>
-nnoremap <silent> <F6> :Cmapkeys <CR>
-nnoremap <silent> <F12> :ConqueTerm bash <CR>
-
 "把80个字符后的字都高这显示出来
 set cc=80
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 "match OverLength /\%81v.\+/
+
+
+"自动增加头部注释
+let g:vimrc_author='Sungis' 
+let g:vimrc_email='mr.sungis@gmail.com' 
+let g:vimrc_homepage='http://sungis.github.com'
 
 map <C-l> :tabn<cr>             "下一个tab
 map <C-h> :tabp<cr>             "上一个tab
@@ -102,9 +99,23 @@ map <C-n> :tabnew<cr>           "新tab
 map <C-k> :bn<cr>               "下一个文件
 map <C-j> :bp<cr>               "上一个文件
 
-"自动增加头部注释
-let g:vimrc_author='Sungis' 
-let g:vimrc_email='mr.sungis@gmail.com' 
-let g:vimrc_homepage='http://sungis.github.com'
+"开启文件夹列表
+map <C-t> :NERDTreeToggle<CR>
 
+
+"<F1> vim 帮助
+"let g:snips_trigger_key='<F2>'
+"Taglist 显示开关
+nmap <F2> :TlistToggle<CR>
+"在当前文件夹下查找选中的文字
+nnoremap <silent> <F3> :Grep<CR>
+"添加文档头信息
 nmap <F4> :AuthorInfoDetect<cr>
+"启动pdb调试
+nnoremap <silent> <F5> :Pyclewn pdb % <CR>
+"打印pdb快捷键列表
+nnoremap <silent> <F6> :Cmapkeys <CR>
+"查看光标所在位置 变量名 对应的值
+nnoremap <silent> <F7> :exe "Cp " . expand("<cword>")<CR>
+"在vim里开启bash
+nnoremap <silent> <F12> :ConqueTerm bash <CR>
