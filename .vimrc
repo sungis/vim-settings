@@ -26,6 +26,9 @@ source $VIMRUNTIME/menu.vim
 "解决consle输出乱码
 language messages zh_CN.utf-8
 
+"替换tab键 呼出自动补全
+inoremap <silent> <buffer> <S-Tab> <C-x><C-o>
+
 "设置一行的最大长度
 "set textwidth=80
 " 历史记录数
@@ -37,15 +40,26 @@ set history=1000
 set laststatus=2
 
 syntax enable
-set background=dark
+set t_Co=256
+"set background=dark
 "colorscheme koehler
-colorscheme fisa
+"colorscheme fisa
+colorscheme lucius
 
 "pydiction 1.2 python auto complete
-let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
-let g:pydiction_menu_height = 15
+"let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
+"let g:pydiction_menu_height = 15
 
+"NERDTree 过滤 suffixes 指定的文件后缀
+set suffixes=.pyc,.pyo
+let NERDTreeIgnore = []
+for suffix in split(&suffixes, ',')
+    let NERDTreeIgnore += [ escape(suffix, '.~') . '$' ]
+endfor
 
+"在vim中查找python文档  <shift-k>
+let g:pydoc_cmd = 'python -m pydoc'
+let g:pydoc_open_cmd = 'tabnew'
 
 " CtrlP (new fuzzy finder)                                                         
 let g:ctrlp_map = ',e'
@@ -114,7 +128,7 @@ let g:ctrlp_custom_ignore = {
 ":map <C-P> :exe "Cp " . expand("<cword>") <CR>
 
 "把80个字符后的字都高这显示出来
-set cc=80
+"set cc=80
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
 "match OverLength /\%81v.\+/
 
@@ -127,13 +141,14 @@ let g:vimrc_homepage='http://sungis.github.com'
 map <C-l> :tabn<cr>             "下一个tab
 map <C-h> :tabp<cr>             "上一个tab
 map <C-n> :tabnew<cr>           "新tab
+map <C-m> :tabc<cr>           "关闭tab
 map <C-k> :bn<cr>               "下一个文件
 map <C-j> :bp<cr>               "上一个文件
 
+
+
 "开启文件夹列表
 map <C-t> :NERDTreeToggle<CR>
-
-
 "<F1> vim 帮助
 "let g:snips_trigger_key='<F2>'
 let g:tagbar_autofocus = 1
@@ -151,3 +166,14 @@ nnoremap <silent> <F7> :Cmapkeys <CR>
 nnoremap <silent> <F8> :exe "Cp " . expand("<cword>")<CR>
 "在vim里开启bash
 nnoremap <silent> <F12> :ConqueTerm bash <CR>
+"查看几行的字符是不是在同一列上
+map <F9> :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
