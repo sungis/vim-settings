@@ -40,11 +40,12 @@ set history=1000
 set laststatus=2
 
 syntax enable
-set t_Co=256
+"set t_Co=256
 "set background=dark
 "colorscheme koehler
 "colorscheme fisa
-colorscheme lucius
+"colorscheme lucius
+colorscheme darkblue
 
 "pydiction 1.2 python auto complete
 "let g:pydiction_location = '~/.vim/after/ftplugin/pydiction/complete-dict'
